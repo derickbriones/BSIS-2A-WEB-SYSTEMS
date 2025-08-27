@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Introduction to JavaScript & jQuery - Briones, Derick N.</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 20px;
+        line-height: 1.5;
+      }
+      h1 {
+        margin-top: 0;
+      }
+      .demo-box {
+        padding: 12px;
+        border: 1px solid #ccc;
+        margin-bottom: 12px;
+      }
+      .controls {
+        margin-bottom: 20px;
+      }
+      .highlight {
+        background: #fffae6;
+        border-left: 4px solid #f0c040;
+        padding: 8px;
+      }
+      #panel {
+        overflow: hidden;
+        max-height: 400px;
+        transition: max-height 0.5s ease;
+      }
+      button {
+        margin: 4px 6px 4px 0;
+      }
+      .small {
+        font-size: 0.9rem;
+        color: #555;
+      }
+      img {
+        display: block;
+        margin: 8px 0;
+        max-width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Exercise 1: Change text -->
+    <section class="demo-box" id="ex1">
+      <h2>Exercise 1: Change text of an element</h2>
+      <p id="demo">This is the original text.</p>
+      <div class="controls">
+        <button id="changeTextBtn">Change text (jQuery)</button>
+        <button id="resetTextBtn">Reset text</button>
+      </div>
+    </section>
+
+    <!-- Exercise 2: Change background color -->
+    <section class="demo-box" id="ex2">
+      <h2>Exercise 2: Change background color</h2>
+      <div id="box" style="padding: 18px">Box (background will change)</div>
+      <div class="controls">
+        <button id="bgBlue">Light Blue</button>
+        <button id="bgReset">Reset</button>
+      </div>
+    </section>
+
+    <!-- Exercise 3-5: Hide / Show / Toggle -->
+    <section class="demo-box" id="ex3">
+      <h2>Exercise 3–5: Hide / Show / Toggle</h2>
+      <p id="paraToHide">
+        Click the buttons to hide/show/toggle this paragraph.
+      </p>
+      <div class="controls">
+        <button id="hideBtn">Hide</button>
+        <button id="showBtn">Show</button>
+        <button id="toggleBtn">Toggle</button>
+      </div>
+    </section>
+
+    <!-- Exercise 6–8: Add / Remove / Toggle class -->
+    <section class="demo-box" id="ex4">
+      <h2>Exercise 6–8: Add / Remove / Toggle class</h2>
+      <p id="classDemo">This text will get a <code>highlight</code> class.</p>
+      <div class="controls">
+        <button id="addClassBtn">Add Class</button>
+        <button id="removeClassBtn">Remove Class</button>
+        <button id="toggleClassBtn">Toggle Class</button>
+      </div>
+    </section>
+
+    <!-- Exercise 9: Change image source -->
+    <section class="demo-box" id="ex5">
+      <h2>Exercise 9: Change image source</h2>
+      <img
+        id="myImg"
+        src="https://via.placeholder.com/150?text=Original"
+        alt="My Image"
+      />
+      <div class="controls">
+        <button id="changeImgBtn">Change Image</button>
+        <button id="resetImgBtn">Reset Image</button>
+      </div>
+    </section>
+
+    <!-- Exercise 10–11: Get / Set input value -->
+    <section class="demo-box" id="ex6">
+      <h2>Exercise 10–11: Get and set input value</h2>
+      <input id="name" placeholder="Type your name here" />
+      <div class="controls">
+        <button id="getValBtn">Get Input (console)</button>
+        <button id="setValBtn">Set Input to "John Doe"</button>
+      </div>
+      <p class="small">
+        Open browser console to see the value when you click 'Get Input'.
+      </p>
+    </section>
+
+    <!-- Exercise 12–13: Append / Prepend -->
+    <section class="demo-box" id="ex7">
+      <h2>Exercise 12–13: Append and Prepend</h2>
+      <p id="appendDemo">Base paragraph text.</p>
+      <div class="controls">
+        <button id="appendBtn">Append " Extra text!"</button>
+        <button id="prependBtn">Prepend "Start "</button>
+        <button id="resetAppend">Reset paragraph</button>
+      </div>
+    </section>
+
+    <!-- Exercise 14–17: Fade and Slide -->
+    <section class="demo-box" id="ex8">
+      <h2>Exercise 14–17: Fade and Slide</h2>
+      <div id="boxFade" style="padding: 10px; border: 1px solid #ddd">
+        Box for fade/slide
+      </div>
+      <div class="controls">
+        <button id="fadeOutBtn">Fade Out</button>
+        <button id="fadeInBtn">Fade In</button>
+        <button id="slideUpBtn">Slide Up</button>
+        <button id="slideDownBtn">Slide Down</button>
+        <button id="resetBoxBtn">Reset Box</button>
+      </div>
+    </section>
+
+    <!-- Exercise 19–20: Mouseover & Click event -->
+    <section class="demo-box" id="ex9">
+      <h2>Exercise 19–20: Mouseover & Click Event</h2>
+      <p id="eventDemo">Hover to change color. Click to change text.</p>
+    </section>
+
+    <script>
+      $(document).ready(function () {
+        // Exercise 1
+        $("#changeTextBtn").click(function () {
+          $("#demo").text("Hello jQuery!");
+        });
+        $("#resetTextBtn").click(function () {
+          $("#demo").text("This is the original text.");
+        });
+
+        // Exercise 2
+        $("#bgBlue").click(function () {
+          $("#box").css("background-color", "lightblue");
+        });
+        $("#bgReset").click(function () {
+          $("#box").css("background-color", "");
+        });
+
+        // Exercise 3-5
+        $("#hideBtn").click(function () {
+          $("#paraToHide").hide();
+        });
+        $("#showBtn").click(function () {
+          $("#paraToHide").show();
+        });
+        $("#toggleBtn").click(function () {
+          $("#paraToHide").toggle();
+        });
+
+        // Exercise 6-8
+        $("#addClassBtn").click(function () {
+          $("#classDemo").addClass("highlight");
+        });
+        $("#removeClassBtn").click(function () {
+          $("#classDemo").removeClass("highlight");
+        });
+        $("#toggleClassBtn").click(function () {
+          $("#classDemo").toggleClass("highlight");
+        });
+
+        // Exercise 9: change image
+        $("#changeImgBtn").click(function () {
+          $("#myImg").attr("src", "picture.jpg");
+        });
+        $("#resetImgBtn").click(function () {
+          $("#myImg").attr("src", "picture2.jpg");
+        });
+
+        // Exercise 10-11: get/set input value
+        $("#getValBtn").click(function () {
+          let val = $("#name").val();
+          console.log("Input value:", val);
+          alert("Input value logged to console: " + val);
+        });
+        $("#setValBtn").click(function () {
+          $("#name").val("John Doe");
+        });
+
+        // Exercise 12-13: append / prepend
+        const originalPara = $("#appendDemo").text();
+        $("#appendBtn").click(function () {
+          $("#appendDemo").append(" Extra text!");
+        });
+        $("#prependBtn").click(function () {
+          $("#appendDemo").prepend("Start ");
+        });
+        $("#resetAppend").click(function () {
+          $("#appendDemo").text(originalPara);
+        });
+
+        // Exercise 14-17: fade and slide
+        $("#fadeOutBtn").click(function () {
+          $("#boxFade").fadeOut(600);
+        });
+        $("#fadeInBtn").click(function () {
+          $("#boxFade").fadeIn(600);
+        });
+        $("#slideUpBtn").click(function () {
+          $("#boxFade").slideUp(400);
+        });
+        $("#slideDownBtn").click(function () {
+          $("#boxFade").slideDown(400);
+        });
+        $("#resetBoxBtn").click(function () {
+          $("#boxFade").show().css({ display: "block" });
+        });
+
+        // Exercise 19-20: mouseover & click
+        $("#eventDemo").mouseover(function () {
+          $(this).css("color", "red");
+        });
+        $("#eventDemo").mouseout(function () {
+          $(this).css("color", "");
+        });
+        $("#eventDemo").click(function () {
+          $(this).text("You clicked me!");
+        });
+      });
+    </script>
+  </body>
+</html>
