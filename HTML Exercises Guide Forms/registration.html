@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 15 - Registration</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .error {
+        border: 2px solid #d9534f;
+        background: #fff0f0;
+      }
+      .msg {
+        color: #d9534f;
+        display: none;
+        font-size: 0.9em;
+      }
+      .form-row {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Registration Form</h2>
+    <form id="registration" action="#" method="POST">
+      <div class="form-row">
+        <label for="username">Username:</label><br />
+        <input id="username" name="username" required />
+        <div id="uErr" class="msg">Username required</div>
+      </div>
+
+      <div class="form-row">
+        <label for="email">Email:</label><br />
+        <input id="email" type="email" name="email" required />
+        <div id="eErr" class="msg">Valid email required</div>
+      </div>
+
+      <div class="form-row">
+        <label for="password">Password:</label><br />
+        <input
+          id="password"
+          type="password"
+          name="password"
+          required
+          minlength="6"
+        />
+        <button id="togglePwd" type="button">Show</button>
+        <div id="pErr" class="msg">Password required (min 6)</div>
+      </div>
+
+      <div class="form-row">
+        <label for="confirm">Confirm Password:</label><br />
+        <input id="confirm" type="password" name="confirm" required />
+        <div id="cErr" class="msg">Passwords must match</div>
+      </div>
+
+      <div class="form-row">
+        <label>Gender:</label><br />
+        <label
+          ><input type="radio" name="gender" value="male" required />
+          Male</label
+        >
+        <label
+          ><input type="radio" name="gender" value="female" /> Female</label
+        >
+        <label><input type="radio" name="gender" value="other" /> Other</label>
+        <div id="gErr" class="msg">Select gender</div>
+      </div>
+
+      <div class="form-row">
+        <label>Interests:</label><br />
+        <label
+          ><input type="checkbox" name="interests" value="web" /> Web</label
+        >
+        <label
+          ><input type="checkbox" name="interests" value="mobile" />
+          Mobile</label
+        >
+        <label><input type="checkbox" name="interests" value="ai" /> AI</label>
+      </div>
+
+      <div class="form-row">
+        <label for="bio">Bio (max 250):</label><br />
+        <textarea
+          id="bio"
+          name="bio"
+          maxlength="250"
+          rows="4"
+          cols="50"
+        ></textarea
+        ><br />
+        <small id="bioCount">0 / 250</small>
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <script>
+      // live bio count
+      $("#bio").on("input", function () {
+        $("#bioCount").text($(this).val().length + " / 250");
+      });
+
+      // password toggle
+      $("#togglePwd").on("click", function () {
+        const p = $("#password");
+        if (p.attr("type") === "password") {
+          p.attr("type", "text");
+          $(this).text("Hide");
+        } else {
+          p.attr("type", "password");
+          $(this).text("Show");
+        }
+      });
+
+      // form validation on submit
+      $("#registration").on("submit", function (e) {
+        e.preventDefault();
+        let valid = true;
+
+        // username
+        if (!$("#username").val().trim()) {
+          $("#username").addClass("error");
+          $("#uErr").show();
+          valid = false;
+        } else {
+          $("#username").removeClass("error");
+          $("#uErr").hide();
+        }
+
+        // email
+        if (!$("#email").val().trim()) {
+          $("#email").addClass("error");
+          $("#eErr").text("Email required").show();
+          valid = false;
+        } else {
+          $("#email").removeClass("error");
+          $("#eErr").hide();
+        }
+
+        // password
+        if (!$("#password").val() || $("#password").val().length < 6) {
+          $("#password").addClass("error");
+          $("#pErr").show();
+          valid = false;
+        } else {
+          $("#password").removeClass("error");
+          $("#pErr").hide();
+        }
+
+        // confirm
+        if ($("#confirm").val() !== $("#password").val()) {
+          $("#confirm").addClass("error");
+          $("#cErr").show();
+          valid = false;
+        } else {
+          $("#confirm").removeClass("error");
+          $("#cErr").hide();
+        }
+
+        // gender
+        if (!$('input[name="gender"]:checked').length) {
+          $("#gErr").show();
+          valid = false;
+        } else {
+          $("#gErr").hide();
+        }
+
+        if (valid) {
+          // here you would normally send to server
+          alert(
+            "Registration complete (simulated). You can now save registration.html to your repo."
+          );
+          // optionally reset form:
+          // this.reset();
+        }
+      });
+    </script>
+  </body>
+</html>

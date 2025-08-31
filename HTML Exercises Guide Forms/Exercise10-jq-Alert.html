@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 10 - jQuery Alert</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h2>Contact (jQuery Alert)</h2>
+    <form id="jqForm">
+      <label for="name">Name:</label><br />
+      <input id="name" name="name" required /><br /><br />
+
+      <label for="email">Email:</label><br />
+      <input id="email" type="email" name="email" required /><br /><br />
+
+      <button type="submit">Send</button>
+    </form>
+
+    <script>
+      $("#jqForm").on("submit", function (e) {
+        e.preventDefault();
+        const name = $("#name").val();
+        alert("jQuery: Thanks, " + (name || "user") + "! Form processed.");
+      });
+    </script>
+  </body>
+</html>

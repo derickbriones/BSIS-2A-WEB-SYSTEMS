@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 12 - jQuery Char Count</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h2>Bio (jQuery live count)</h2>
+    <form>
+      <textarea id="bio" maxlength="300" rows="5" cols="50"></textarea><br />
+      <small id="count">0 / 300</small><br /><br />
+      <button type="submit">Save</button>
+    </form>
+
+    <script>
+      $("#bio").on("input", function () {
+        $("#count").text($(this).val().length + " / 300");
+      });
+    </script>
+  </body>
+</html>

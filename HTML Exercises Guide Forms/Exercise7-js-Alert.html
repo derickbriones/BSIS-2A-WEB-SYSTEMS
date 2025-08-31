@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 7 - JS Alert</title>
+  </head>
+  <body>
+    <h2>Contact (JS alert)</h2>
+    <form id="contactForm" onsubmit="return handleSubmit(event)">
+      <label for="name">Name:</label><br />
+      <input id="name" name="name" required /><br /><br />
+
+      <label for="email">Email:</label><br />
+      <input id="email" type="email" name="email" required /><br /><br />
+
+      <button type="submit">Send</button>
+    </form>
+
+    <script>
+      function handleSubmit(e) {
+        e.preventDefault(); // stop page reload
+        const name = document.getElementById("name").value;
+        alert(
+          "Thanks, " + (name || "user") + "! Your message has been received."
+        );
+        return false;
+      }
+    </script>
+  </body>
+</html>

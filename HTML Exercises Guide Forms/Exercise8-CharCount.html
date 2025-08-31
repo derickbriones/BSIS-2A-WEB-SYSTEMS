@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 8 - Char Count</title>
+  </head>
+  <body>
+    <h2>Bio (live char count)</h2>
+    <form action="#" method="POST">
+      <label for="bio">Bio (max 200):</label><br />
+      <textarea
+        id="bio"
+        name="bio"
+        rows="5"
+        cols="50"
+        maxlength="200"
+      ></textarea
+      ><br />
+      <small id="count">0 / 200</small><br /><br />
+      <button type="submit">Save</button>
+    </form>
+
+    <script>
+      const bio = document.getElementById("bio");
+      const count = document.getElementById("count");
+      bio.addEventListener("input", () => {
+        count.textContent = bio.value.length + " / 200";
+      });
+    </script>
+  </body>
+</html>

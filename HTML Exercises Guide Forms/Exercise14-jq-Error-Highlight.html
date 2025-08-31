@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 14 - Error Highlight</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .error {
+        border: 2px solid #d9534f;
+        background: #fff0f0;
+      }
+      .error-message {
+        color: #d9534f;
+        font-size: 0.9em;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Validate & Highlight</h2>
+    <form id="form14">
+      <label>Full Name:</label><br />
+      <input id="fullname" />
+      <div id="nameErr" class="error-message">Required</div>
+      <br />
+
+      <label>Email:</label><br />
+      <input id="email" type="email" />
+      <div id="emailErr" class="error-message">Required</div>
+      <br /><br />
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      $("#form14").on("submit", function (e) {
+        e.preventDefault();
+        let valid = true;
+
+        // fullname
+        if (!$("#fullname").val().trim()) {
+          $("#fullname").addClass("error");
+          $("#nameErr").show();
+          valid = false;
+        } else {
+          $("#fullname").removeClass("error");
+          $("#nameErr").hide();
+        }
+
+        // email
+        if (!$("#email").val().trim()) {
+          $("#email").addClass("error");
+          $("#emailErr").show();
+          valid = false;
+        } else {
+          $("#email").removeClass("error");
+          $("#emailErr").hide();
+        }
+
+        if (valid) alert("Form submitted (simulated).");
+      });
+    </script>
+  </body>
+</html>
